@@ -60,6 +60,7 @@ public class HttpSeedProvider implements SeedProvider
             conn.setRequestMethod("GET");
             if (conn.getResponseCode() != 200)
             {
+                logger.warn(String.format("getSeeds from %s returned %d", url, conn.getResponseCode()));
                 return null;
             }
 

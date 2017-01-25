@@ -115,7 +115,8 @@ public class HttpSeedProvider implements SeedProvider
             }
             catch (IOException e) {}
 
-            if (content.length() > 0) {
+            if (content != null)
+            {
                 break;
             }
         }

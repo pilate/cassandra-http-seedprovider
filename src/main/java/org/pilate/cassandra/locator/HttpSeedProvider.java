@@ -84,7 +84,7 @@ public class HttpSeedProvider implements SeedProvider
         }
     }
 
-    public List<InetAddress> getSeeds()
+    private Config loadConfig() throws AssertionError
     {
         Config conf;
         try
@@ -95,9 +95,17 @@ public class HttpSeedProvider implements SeedProvider
         {
             throw new AssertionError(e);
         }
+        return conf;
+    }
+
+    public List<InetAddress> getSeeds()
+    {
+
+        Config conf = loadConfig();
 
         String[] urls = getUrlList(conf);
 
+        // Check each URL for content
         String content = "";
         for (int i = 0; i < urls.length; i++)
         {

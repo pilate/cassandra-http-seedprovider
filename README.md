@@ -7,6 +7,7 @@ HTTP based SeedProvider for Apache Cassandra
 2. Copy jar to Cassandra lib folder (for example: /usr/share/cassandra/lib/)
 3. Change SeedProvider to org.apache.cassandra.locator.HttpSeedProvider
 4. Add "urls" key/value to parameters
+5. Host a comma separated list of seeds at the provided URL(s)
 
 ## Example config
 
@@ -15,3 +16,8 @@ HTTP based SeedProvider for Apache Cassandra
         - class_name: org.apache.cassandra.locator.HttpSeedProvider
           parameters:
               - urls: "http://host1.example.com/seeds.txt,http://host2.example.com/seeds.txt"
+
+
+## Example seeds file:
+
+    127.0.0.1,127.0.0.2

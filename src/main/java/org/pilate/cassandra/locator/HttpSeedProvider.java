@@ -97,11 +97,11 @@ public class HttpSeedProvider implements SeedProvider
 
         // Check each URL for content
         String content = "";
-        for (int i = 0; i < urls.length; i++)
+        for (String url : urls)
         {
             try
             {
-                content = getUrlContent(urls[i].trim());
+                content = getUrlContent(url.trim());
             }
             catch (IOException e) {}
 

@@ -51,7 +51,7 @@ public class HttpSeedProvider implements SeedProvider
             if (conn.getResponseCode() != 200)
             {
                 logger.warn(String.format("getSeeds from %s returned %d", url, conn.getResponseCode()));
-                return null;
+                return "";
             }
 
             BufferedReader breader = new BufferedReader(new InputStreamReader(conn.getInputStream()));
@@ -105,7 +105,7 @@ public class HttpSeedProvider implements SeedProvider
             }
             catch (IOException e) {}
 
-            if (content != null)
+            if (content.length() != 0)
             {
                 break;
             }
@@ -121,7 +121,6 @@ public class HttpSeedProvider implements SeedProvider
             }
             catch (UnknownHostException ex)
             {
-                // not fatal... DD will bark if there end up being zero seeds.
                 logger.warn("Seed provider couldn't lookup host {}", host);
             }
         }

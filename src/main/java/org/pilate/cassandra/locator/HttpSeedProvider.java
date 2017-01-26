@@ -42,17 +42,7 @@ public class HttpSeedProvider implements SeedProvider
 
     public HttpSeedProvider(Map<String, String> args) {}
 
-    private String[] getUrlList(Config conf)
-    {
-        String[] urls = conf.seed_provider.parameters.get("urls").split(",", -1);
-        for (int i = 0; i < urls.length; i++)
-        {
-            urls[i] = urls[i].trim();
-        }
-        return urls;
-    }
-
-    private String getUrlContent(Config conf, String url) throws IOException
+    private String getUrlContent(String url) throws IOException
     {
         HttpURLConnection conn = (HttpURLConnection) new URL(url).openConnection();
         try
@@ -101,10 +91,9 @@ public class HttpSeedProvider implements SeedProvider
 
     public List<InetAddress> getSeeds()
     {
-
         Config conf = loadConfig();
 
-        String[] urls = getUrlList(conf);
+        String[] urls = conf.seed_provider.parameters.get("urls").split(",", -1);
 
         // Check each URL for content
         String content = "";
@@ -112,7 +101,7 @@ public class HttpSeedProvider implements SeedProvider
         {
             try
             {
-                content = getUrlContent(conf, urls[i]);
+                content = getUrlContent(urls[i].trim());
             }
             catch (IOException e) {}
 

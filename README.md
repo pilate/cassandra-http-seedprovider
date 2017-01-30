@@ -18,6 +18,6 @@ HTTP based SeedProvider for Apache Cassandra
               - urls: "http://host1.example.com/seeds.txt,http://host2.example.com/seeds.txt"
 
 
-## Example seeds file response:
+## Example seeds file response
 
     127.0.0.1,127.0.0.2
